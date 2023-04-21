@@ -45,6 +45,8 @@ for account in accounts:
 
     # 创建密钥
     os.system(f'ssh-keygen -m PEM -t rsa -b 4096 -C {email} -f {key_path} -N "" -P ""')
+    # 添加密钥到ssh-agent
+    os.system(f"start-ssh-agent.cmd > $null; ssh-add {key_path}")
 
     # 显示创建结果
     print(f"Created SSH key for account: {name} <{email}>")
