@@ -36,14 +36,16 @@ accounts = [
     }
 ]
 
-# 遍历所有账户，创建账户
+# 遍历所有账户，创建密钥
 for account in accounts:
     name = account['name']
     email = account['email']
+    pub_key_name = f"id_rsa_{name.replace(' ', '_')}.pub"
+    key_path = f"C:/Users/{os.getlogin()}/.ssh/id_rsa_{name}"
 
-    # 创建账户
-    os.system(f"git config --global user.name '{name}'")
-    os.system(f"git config --global user.email '{email}'")
+    # 创建密钥
+    os.system(f'ssh-keygen -m PEM -t rsa -b 4096 -C {email} -f {key_path} -N "" -P ""')
 
     # 显示创建结果
-    print(f"Created Git account: {name} <{email}>")
+    print(f"Created SSH key for account: {name} <{email}>")
+    print(f"Public key filename: {pub_key_name}")
