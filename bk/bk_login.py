@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 蓝鲸模拟登录获取bk_token
+使用V6
 """
 import requests
 
